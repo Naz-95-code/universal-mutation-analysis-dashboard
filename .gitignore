@@ -1,0 +1,19 @@
+# Do not track data or results
+data/
+results/
+
+# Genomics files
+*.vcf
+*.vcf.gz
+*.tbi
+*.csi
+
+# Generated tables
+*.txt
+*.tsv
+*.csv
+
+# Logs
+*.log
+
+.DS_Store
