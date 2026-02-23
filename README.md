@@ -21,15 +21,25 @@ This module:
 - Normalizes counts to proportions
 - Combines spectra across multiple samples
 
-
 ## Project Structure
-scripts/            Shell scripts for analysis
-data/test/          Small test VCF files
-data/full/          Full dataset VCF files
-results/spectra/    Per-sample mutation spectra
-results/combined/   Combined comparison table
-docs/               Documentation and notes
 
+```
+universal-mutation-analysis-dashboard/
+│
+├── scripts/              # Shell scripts for mutation spectrum analysis
+│   ├── extract_spectrum.sh
+│   └── combine_spectra.sh
+│
+├── data/
+│   ├── test/             # Small test VCF files
+│   └── full/             # Full dataset (80+ VCF files)
+│
+├── results/
+│   ├── spectra/          # Per-sample mutation spectra
+│   └── combined/         # Combined comparison tables
+│
+└── docs/                 # Documentation and notes
+```
 
 ## Requirements
 
