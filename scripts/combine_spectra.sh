@@ -1,12 +1,22 @@
 #!/bin/bash
+set -e
 
-echo -e "Mutation\tBreast_sim1\tBreast_sim2\tProst_sim1\tProst_sim2" > combined_spectrum.txt
+input_dir="results/spectra"
+output_dir="results/combined"
+mkdir -p "$output_dir"
 
-paste \
-    <(sort Breast-AdenoCa_sim1_spectrum.txt | awk '{print $1"\t"$3}') \
-    <(sort Breast-AdenoCa_sim2_spectrum.txt | awk '{print $3}') \
-    <(sort Prost-AdenoCA_sim1_spectrum.txt | awk '{print $3}') \
-    <(sort Prost-AdenoCA_sim2_spectrum.txt | awk '{print $3}') \
-    >> combined_spectrum.txt
+output_file="$output_dir/combined_spectra.tsv"
 
-echo "Combined table created: combined_spectrum.txt"
+echo -e "Sample\tMutation\tCount\tFrequency" > "$output_file"
+
+for file in "$input_dir"/*_spectrum.txt
+do
+    sample=$(basename "$file" _spectrum.txt)
+
+    awk -v s="$sample" '{
+        print s "\t" $1 "\t" $2 "\t" $3
+    }' "$file" >> "$output_file"
+
+done
+
+echo "Combined table created: $output_file"
